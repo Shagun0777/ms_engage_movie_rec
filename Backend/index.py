@@ -94,3 +94,4 @@ async def index(request: Request):
 
     return {'created_user' : user.user_id, 'login_link' : 'http://localhost:8000/login/?user_id=' + str(user_id)}
 
+

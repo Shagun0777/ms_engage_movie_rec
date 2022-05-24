@@ -21,6 +21,7 @@ const Recommend = ({ params }) => {
   let [recommend_by_genre, setGenre] = useState([])
   let [recommend_by_cast, setCast] = useState([])
   let [recommend_final, setFinal] = useState([])
+  let [sort, setSort] = useState(0);
 //   let [, setScraps] = useState([]);
 
 
@@ -44,7 +45,7 @@ const Recommend = ({ params }) => {
         console.log(i)
     }
     // console.log('sdata', data['exact match'])
-    var exact_match_f = data['exact match']['title']
+    var exact_match_f = [data['exact match']['title'], data['exact match']['release_date'], data['exact match']['homepage']]
     // console.log('edata',exact_match_f)
     setExact([exact_match_f])
     if( data['recommended_match']['By Name'] != null){
@@ -67,28 +68,76 @@ const Recommend = ({ params }) => {
     // console.log('ccccccccc', data)
     for(var i in data){
         // console.log('ccccccccc', data[i][key])
-      ans.push(data[i][key],);
+      ans.push([data[i][key],data[i]['release_date'],data[i]['homepage']]);
     }
     return ans
   }
+  const [selected, setSelected] = React.useState("Newest First");
+  const changeSelected = () => {
+    console.log('selected=',selected)
+    if (selected==1){
+      setSelected(0)
+    }
+    else{
+      setSelected(1)
+    }
 
+  };
+  let options = null;
+  const sort_array = ["Newest First", "Oldest First", "A to Z", "Z to A"];
+  const changeSelectOptionHandler = (event) => {
+    setSelected(event.target.value);
+  };
+
+  options = sort_array.map((x) => <option key={x}>{x}</option>);
+
+  if (selected === "Oldest First") sort = 1;
+  else if (selected === "Newest First") sort = 2;
+  else if (selected === "A to Z") sort = 3;
+  else if (selected === "Z to A") sort = 4;
+  const sortMovies = (k) => {
+    
+    console.log('sorting',k)
+    if (sort == 1){
+       return k.sort((a, b) => a[1].localeCompare(b[1]))
+    }
+    if(sort == 2){
+      return k.sort((a, b) => b[1].localeCompare(a[1]))
+    }
+    if(sort == 3){
+      k.sort()
+      // return k
+    }
+    if(sort == 4){
+      k.sort()
+      k.reverse()
+      // return k
+    }
+    console.log('a sorting',k)
+    return k
+  };
+ 
 
   return (
-    <div className="App">
-      <div className="show">
+
+      <div >
+      <form style={{ marginBlock: 10 }}>
+        <label>Sort By: </label>
+        <select onChange={changeSelectOptionHandler}>{options}</select>
+      </form>
+        {exact_match.length == 0 && <h2>Loading...</h2>}
+        {exact_match.length > 0  && <ExpandableList data={sortMovies(exact_match)} header={"Exact Movies"}/>}
         
-        {exact_match.length > 0  && <ExpandableList data={exact_match} header={"Exact Movies"}/>}
-        
-        {recommend_by_name.length > 0 && <ExpandableList data={recommend_by_name} header={"Recommended By Name"}/>}
+        {recommend_by_name.length > 0 && <ExpandableList data={sortMovies(recommend_by_name)} header={"Recommended By Name"}/>}
 
-        {recommend_final.length > 0 &&  <ExpandableList data={recommend_final} header ={"Final Recommendation"}/>}
+        {recommend_final.length > 0 &&  <ExpandableList data={sortMovies(recommend_final)} header ={"Final Recommendation"}/>}
 
-        {recommend_by_genre.length>0  && <ExpandableList data={recommend_by_genre} header={"recommended By Genre"}/>}
+        {recommend_by_genre.length>0  && <ExpandableList data={sortMovies(recommend_by_genre)} header={"recommended By Genre"}/>}
 
-        {recommend_by_cast.length > 0 && <ExpandableList data={recommend_by_cast} header={ "Recommended By Cast"}/>}
+        {recommend_by_cast.length > 0 && <ExpandableList data={sortMovies(recommend_by_cast)} header={ "Recommended By Cast"}/>}
 
       </div>
-    </div>
+
   );
 }
 

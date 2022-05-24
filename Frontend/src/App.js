@@ -39,13 +39,13 @@ function App() {
   };
   function LoginV1() {
     let { user_id } = useParams();
-    console.log(user_id)
+    // console.log(user_id)
     return <Login params={user_id}/>;
   }
   function RegisterAndLogin() {
     let { user_id, movie_name } = useParams();
-    console.log(user_id, movie_name)
-    console.log(user_id)
+    // console.log(user_id, movie_name)
+    // console.log(user_id)
     // return <Login params={user_id}/>;
     const response =  Axios("http://localhost:8000/login?user_id="+user_id+"&add_movies="+movie_name);
     return <Login params={user_id}/>

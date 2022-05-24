@@ -7,7 +7,13 @@ const Movies = ({ list_movies }) => {
     <div>
       {list_movies.map((movie) => (
         <div id="row">
-          {movie}
+          <div>
+          {Array.isArray(movie) && <a href={movie[2]}>{movie[0]}</a>}
+          {!Array.isArray(movie) && movie}
+          </div>
+          <div>
+            {Array.isArray(movie) && movie[1]}
+            </div>
         </div>
       ))}
     </div>
