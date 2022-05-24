@@ -76,7 +76,7 @@ const Recommend = ({ params }) => {
   return (
     <div className="App">
       <div className="show">
-        
+        {recommend_by_name.length == 0 && <h3>Loading..</h3>}
         {exact_match.length > 0  && <ExpandableList data={exact_match} header={"Exact Movies"}/>}
         
         {recommend_by_name.length > 0 && <ExpandableList data={recommend_by_name} header={"Recommended By Name"}/>}

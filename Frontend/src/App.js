@@ -7,12 +7,7 @@ import Login from "./login";
 import Recommend from "./movierecommend";
 // import { Routes, Route } from "react-router-dom"
 import {useParams, BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-{/* <Routes> */}
-  // <Route exact path="/login" component={Login}/>
-  {/* <Route path="/about" component={About}/>
-  <Route path="/:user" component={User}/>
-  <Route component={NoMatch}/> */}
-{/* </Routes> */}
+
 
 
 function App() {
@@ -65,7 +60,7 @@ function App() {
           </div>
           {/* console.log('path',path) */}
       </Route>
-      <Route path = '/login/:user_id'>
+      <Route path = '/login/:user_id'>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
           <div className="show">
           <LoginV1/>
           </div>
@@ -79,7 +74,9 @@ function App() {
       </Route>
         <Route path = '/'>
           <div className="show">
-            {(
+            {scraps.length == 0 && <h4>Loading...</h4>}
+            { scraps.length> 0 && (
+              
               <ExpandableList
                 data={scraps}
               />

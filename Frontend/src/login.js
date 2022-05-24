@@ -30,7 +30,7 @@ const Login = ({ params }) => {
   useEffect(() => {
     fetchScraps();
     print_scraps();
-  }, []);
+  }, [exact_match]);
   const print_scraps = async () => {
       console.log('printf')
       console.log(watched)
@@ -91,14 +91,23 @@ const Login = ({ params }) => {
     return ans
   }
 
-
+  const sort_by_name = () =>{
+    console.log('sorting')
+    console.log(exact_match)
+    
+    exact_match =exact_match.reverse()
+    console.log(exact_match)
+    setExact(exact_match)
+    // setExact(data)
+  }
   return (
-    <div className="App">
-      <div className="show">
+
+      <div className="show2">
+        {user == '' && <h3>Loading..</h3>}
         <h1 color="white">{("user logged :"+ (user)).toUpperCase()}</h1>
         
         <ExpandableList data={watched} header={"User WatchList"}/>
-        
+        <button onClick={() => sort_by_name()}>Sort_By_Alphabet</button>
         {exact_match.length > 0  && <ExpandableList data={exact_match} header={"Exact Movies"}/>}
         
         {recommend_by_name.length > 0 && <ExpandableList data={recommend_by_name} header={"Recommended By Name"}/>}
@@ -110,7 +119,7 @@ const Login = ({ params }) => {
         {recommend_by_cast.length > 0 && <ExpandableList data={recommend_by_cast} header={ "Recommended By Cast"}/>}
 
       </div>
-    </div>
+
   );
 }
 
