@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import ExpandableList from "./components/ExpandableList";
 import Login from "./login";
 import Recommend from "./movierecommend";
+import Home from "./Home";
 // import { Routes, Route } from "react-router-dom"
 import {useParams, BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 {/* <Routes> */}
@@ -17,11 +18,13 @@ import {useParams, BrowserRouter as Router, Route, Switch} from 'react-router-do
 
 function App() {
 
-  let [all_movies_list, setScraps] = useState([]);
-
+  let all_movies_list = []
+  const setScraps = async (d) => {
+    all_movies_list = d
+  };
 
   useEffect(() => {
-    fetchScraps();
+    
   }, []);
 
   const fetchScraps = async () => {
@@ -79,13 +82,7 @@ function App() {
       </Route>
         <Route path = '/'>
           <div className="show">
-            {all_movies_list.length == 0 && <h2>Loading...</h2>}
-            {all_movies_list.length>0 && (
-              <ExpandableList
-              
-                data={all_movies_list}
-              />
-            )}
+            <Home/>
           </div>
       </Route>
 

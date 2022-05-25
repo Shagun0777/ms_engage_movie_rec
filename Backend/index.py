@@ -36,7 +36,7 @@ async def index(request: Request):
     for i in kk:
         ans = {}
         ans['title'] = i['title']
-        print(type(i), type(i['title']))
+        # print(type(i), type(i['title']))
         response.append(ans)
     response_dict['data'] = response
     return response_dict
@@ -70,7 +70,7 @@ async def index(request: Request):
     status = 'movie not added because either its already watched or it does not exist in our db choose movies from http://localhost:8000/'
     if add_movies and add_movies not in user.watched:
         movie = MovieRecommend()
-        all_movies = movie.extract_movies_list()
+        all_movies = movie.all_movie_list
         all_movies_names = [x['title'].lower() for x in all_movies]
         if add_movies.lower() in all_movies_names:
             status = 'movie added'

@@ -1,13 +1,32 @@
 from config.db import conn
+from csv_to_data import fetch_csv_to_data_dict_v2
 from schemas.fns import serializeDict,serializeList
 import json
 class MovieRecommend():
+    def __init__(self) -> None:
+        self.all_movie_list = self.extract_movies_list()
+        self.all_credits_list = self.fetch_moves_credits()
+
+    # slow in remote version
+    # def extract_movies_list(self):
+    #     return serializeList(conn.moviesdb.movies.find())
+    
+    # for remote version use this one
     def extract_movies_list(self):
-        return serializeList(conn.moviesdb.movies.find())
+        url = r'..\Backend\tmdb_5000_movies.csv'
+        data, data_dict = fetch_csv_to_data_dict_v2(url)
+        return serializeList(data_dict)
+
+    # def extract_movies_by_id(self, m_id):
+    #     return serializeDict(conn.moviesdb.movies.find_one({'m_id':m_id}))
 
 
     def extract_movies_by_id(self, m_id):
-        return serializeDict(conn.moviesdb.movies.find_one({'m_id':m_id}))
+        for movie in self.all_movie_list:
+            if movie['m_id'] == m_id:
+                return serializeDict(movie)
+        return serializeDict(movie)
+
 
     def fetch_exact_move(self, all_movies, ip_movie):
         for movie in all_movies:
@@ -131,20 +150,31 @@ class MovieRecommend():
         return ans
 
 
+    # def fetch_moves_credit_by_id(self, movie_id):
+    #     return conn.moviesdb.credits.find_one({ "m_id":movie_id})
+
     def fetch_moves_credit_by_id(self, movie_id):
-        return conn.moviesdb.credits.find_one({ "m_id":movie_id})
+        for credit in self.all_credits_list:
+            if credit['m_id'] == movie_id:
+                return serializeDict(credit)
+
+        return serializeDict(credit)
 
 
     def fetch_moves_credit_by_id_multiple(self, movies_list):
+        mid_to_credit_dict = {c['m_id']:c for c in self.all_credits_list}
         ans = []
         for movie in  movies_list:
-            ans.append(self.fetch_moves_credit_by_id(movie['m_id']))
+            if mid_to_credit_dict.get(movie['m_id']):
+                ans.append(mid_to_credit_dict.get(movie['m_id']))
         return ans
 
     def fetch_moves_credits(self):
         return serializeList(conn.moviesdb.credits.find())
-
-
+    def fetch_moves_credits(self):
+        url =r'..\Backend\tmdb_5000_credits.csv'
+        data, data_dict = fetch_csv_to_data_dict_v2(url)
+        return serializeList(data_dict)
     def recommend_combined(self, list1, list2, list3):
         ans = []
         for data in list1:
@@ -188,7 +218,7 @@ class MovieRecommend():
 
         
     def recommend_movie_multiple(self, ip_movie_list):
-        all_movies = self.extract_movies_list()
+        all_movies = self.all_movie_list
         ans = []
         fans = {}
         exact_movie_list = self.fetch_exact_move_multiple(all_movies, ip_movie_list)
