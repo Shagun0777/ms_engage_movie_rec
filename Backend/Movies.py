@@ -117,7 +117,7 @@ class MovieRecommend():
     def recommend_on_basis_of_cast(self, all_movies, ip_movie, exact_movie_bool, exact_movie, exact_cast):
         ans = []
         original_cast = self.fetch_top_2_cast(exact_cast)
-        all_movie_credits  = self.fetch_moves_credits()
+        all_movie_credits  = self.all_credits_list
         for credit in all_movie_credits:
             curr_cast = self.fetch_top_2_cast(credit)
             rank = curr_cast.intersection(original_cast)
@@ -131,8 +131,8 @@ class MovieRecommend():
         return ans
     def recommend_on_basis_of_cast_multiple(self, all_movies, ip_movie_list, exact_movie_bool, exact_movie_list, exact_cast_list):
         ans = []
-        all_movie_credits  = self.fetch_moves_credits()
-        all_movies = self.extract_movies_list()
+        all_movie_credits  = self.all_credits_list
+        all_movies = self.all_movie_list
         all_movies_dict = {x['m_id']:x for x in all_movies}
         for credit in all_movie_credits:
             curr_cast = self.fetch_top_2_cast(credit)
@@ -169,8 +169,8 @@ class MovieRecommend():
                 ans.append(mid_to_credit_dict.get(movie['m_id']))
         return ans
 
-    def fetch_moves_credits(self):
-        return serializeList(conn.moviesdb.credits.find())
+    # def fetch_moves_credits(self):
+    #     return serializeList(conn.moviesdb.credits.find())
     def fetch_moves_credits(self):
         url =r'..\Backend\tmdb_5000_credits.csv'
         data, data_dict = fetch_csv_to_data_dict_v2(url)
@@ -195,7 +195,7 @@ class MovieRecommend():
         return f_ans[0:min(10, len(ans))]
 
     def recommend_movie(self, ip_movie):
-        all_movies = self.extract_movies_list()
+        all_movies = self.all_movie_list
         ans = []
         fans = {}
         exact_movie = self.fetch_exact_move(all_movies, ip_movie)

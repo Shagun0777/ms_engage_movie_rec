@@ -10,8 +10,10 @@ collection = db['users']
 class User():
     def __init__(self, user_id):  
         self.user_id = user_id
+        self.user_exist = False
         user_exists = self.check_user_exists()
         if user_exists:
+            self.user_exist = True
             print (user_exists)
             self.watched = user_exists['watched']
             print('bef self.watched= ', self.watched)
@@ -21,7 +23,7 @@ class User():
         else:
             self.watched = []
     def create_new_user(self):
-        if not self.check_user_exists():
+        if not self.user_exist:
             collection.update_one({'user_id':self.user_id },{"$set":{'user_id':self.user_id, 'watched':self.watched}},upsert=True)
     def check_user_exists(self):
         found_user =  conn.moviesdb.users.find_one({'user_id':self.user_id})
@@ -30,13 +32,13 @@ class User():
         return found_user
 
     def update_user_watched(self, mname):
-        print(mname)
-        if self.check_user_exists():
-            self.watched.append(mname)
-            user_dict = {'user_id':self.user_id, 'watched':self.watched}
-            print(user_dict)
-            collection.update_one({'user_id':self.user_id },{"$set":user_dict},upsert=True)
-            return True
+        # print(mname)
+        # if self.check_user_exists():
+        self.watched.append(mname)
+        user_dict = {'user_id':self.user_id, 'watched':self.watched}
+        # print(user_dict)
+        collection.update_one({'user_id':self.user_id },{"$set":user_dict},upsert=True)
+        return True
     def partition(self, l, r, watched):
         pivot, ptr = watched[r], l
         for i in range(l, r):

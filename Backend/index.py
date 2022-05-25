@@ -63,7 +63,7 @@ async def index(request: Request):
     print (user_id, add_movies)
     user = User(user_id)
     print (user.watched, user.user_id)
-    if not user.check_user_exists():
+    if not user.user_exist:
         return {'logged user' : '', 'watched' :[], 'recommended_movies':[],
         'status':'User does not exist visit http://localhost:8000/create_user/?user_id='+ str(user_id),
         'register here': 'http://localhost:8000/create_user/?user_id=' + str(user_id)}
