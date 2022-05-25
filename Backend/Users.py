@@ -4,7 +4,7 @@ import json
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 # mc = MongoClient("mongodb+srv://shagun:WucMiA4AWKldlleg@cluster0.70i8n.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-mc = MongoClient()
+mc = conn
 db=mc['moviesdb']
 collection = db['users']
 class User():
