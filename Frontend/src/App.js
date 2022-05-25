@@ -17,7 +17,7 @@ import {useParams, BrowserRouter as Router, Route, Switch} from 'react-router-do
 
 function App() {
 
-  let [scraps, setScraps] = useState([]);
+  let [all_movies_list, setScraps] = useState([]);
 
 
   useEffect(() => {
@@ -79,9 +79,11 @@ function App() {
       </Route>
         <Route path = '/'>
           <div className="show">
-            {(
+            {all_movies_list.length == 0 && <h2>Loading...</h2>}
+            {all_movies_list.length>0 && (
               <ExpandableList
-                data={scraps}
+              
+                data={all_movies_list}
               />
             )}
           </div>

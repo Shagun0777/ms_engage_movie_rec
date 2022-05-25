@@ -146,7 +146,7 @@ const Login = ({ params }) => {
         <label>Sort By: </label>
         <select onChange={changeSelectOptionHandler}>{options}</select>
       </form>
-      {exact_match.length == 0 && <h2>Loading...</h2>}
+      {user == '' && <h2>Loading...</h2>}
         <ExpandableList data={watched} header={"User WatchList"}/>
 
 
