@@ -79,7 +79,7 @@ Dynamic programming (and memoization) works to optimize the naive recursive solu
 ### Greedy algorithms :
 
 **Greedy** -
-Greedy is an algorithmic paradigm that builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. So the problems where choosing locally optimal also leads to global solution are best fit for Greedy. I have used this algorithm to recommend final set of movies to the user .
+Greedy is an algorithmic paradigm that builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. So the problems where choosing locally optimal also leads to global solution are best fit for Greedy. I have used this algorithm to recommend the final set of movies to the user .
 
 ### Branch and bound algorithms
 
@@ -89,7 +89,7 @@ An important advantage of branch-and-bound algorithms is that we can control the
 ### Randomized algorithms
 
 **Random Pivot Point** -
-A randomized algorithm uses a random number at least once during the computation to make a decision . Durinng the implementation of Quicksort Algorithm , Randomized Algorithm is using there a random number to choose a pivot .
+A randomized algorithm uses a random number at least once during the computation to make a decision . During the implementation of Quicksort Algorithm , Randomized Algorithm is using there a random number to choose a pivot .
 
 ## Functional Features
 
@@ -121,3 +121,7 @@ A randomized algorithm uses a random number at least once during the computation
 ### Reason for using MongoDB as databse
 
 Here we have used `MongoDb` because the user class can have empty/single or multiple watched movies so we cannot fix size of it in `SQL DB`.
+
+## For More Information
+
+[Microssoft Engage Project (Algorithms )](https://docs.google.com/document/d/1ZP-gdRIiZlYqipdhIiqonIQHPGAGE0Rvb_KaOqQ9dTk/edit?usp=sharing)
