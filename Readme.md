@@ -1,10 +1,10 @@
-[6:48 PM, 5/26/2022] 20UCS015 Shagun Tripathi: <p align="center">
+ <p align="center">
 <img src="https://media4.giphy.com/media/7zMsa4CDcXY7PEDNGN/giphy.gif">
 
 </p>
 <p align="center">A web-based movie app (Demo only)</p>
-![Screenshot](./images/Screenshot%20(763).png)
-<img src="./images/Screenshot%20(763).png">
+<img src="./images/Screenshot%20(763).png"width="200">
+
 ## About
 
 The app will search for movies and render the results to the user. <br/>
