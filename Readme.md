@@ -30,38 +30,35 @@ In this application we have created our own API that fetches the data from the d
 
 Need to have python3 and Node.Js installed.
 
-Backend Command
+#### Backend Command
 
-bash```
+```bash
 cd Backend
+```
 
-````
-
-bash```
+```bash
 pip install -r requirements.txt
-````
+```
 
-bash```
+```bash
 python -m uvicorn index:app --reload
-
-````
+```
 
 In new terminal/cmd
 
-Frontend Command
+#### Frontend Command
 
-bash```
+```bash
 cd Frontend
-````
+```
 
-bash```
+```bash
 npm install
+```
 
-````
-
-bash```
+```bash
 npm start
-````
+```
 
 ## Functional Features
 
@@ -84,4 +81,6 @@ npm start
 
 - _Sort by name_ - This function will sort all the recommendation list be it be by genre , by names , by cast etc on the basis of name From A-Z or Z-A.
 - _Link for movies_ - Clicking on each movie title will lead you to information page of that movie .
+- _Hosted_ -This application is hosted so it is accessible on the internet. For remote database I have used `MongoDB Atlas` , for Backend hosting I have used `Heroku` and I have deployed my server there . For frontend I have used `Firebase` .
+- _Flexible for every device_ - This app is available on both mobile and desktop . They are not native to a particular type of system.
 - _Sorting the user Watched list_ - Clicking on each movie title will lead you to information page of that movie .
