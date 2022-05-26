@@ -1,4 +1,6 @@
- <p align="center">
+<h1 align="center">Movie Hunt	:movie_camera: </h1>
+
+<p align="center">
 <img src="https://media4.giphy.com/media/7zMsa4CDcXY7PEDNGN/giphy.gif">
 
 </p>
@@ -12,7 +14,9 @@
 
 The app will search for movies and render the results to the user. <br/>
 
-In this application we have created our own API that fetches the data from the database. We have used MongoDB as database . The information present in the database is imported from the csv file from tmdb . Here, each user will be having their unique profile with their Personal watched list and movie Recommendation section .
+In this application we have created our own API that fetches the data from the database. We have used `MongoDB` as database . The information present in the database is imported from the csv file from tmdb . Here, each user will be having their unique profile with their Personal watched list and movie Recommendation section . <br/>
+
+This application is hosted so it is accessible on the internet. For remote database I have used `MongoDB Atlas` , for Backend hosting I have used `Heroku` and I have deployed my server there . For frontend I have used `Firebase` .
 
 ## How to use this application
 
@@ -28,7 +32,7 @@ In this application we have created our own API that fetches the data from the d
 
 ### _For local setup_:
 
-Need to have python3 and Node.Js installed.
+`Need to have python3 and Node.Js installed.`
 
 #### Backend Command
 
@@ -60,7 +64,36 @@ npm install
 npm start
 ```
 
+## Algorithms Used In The Application
+
+### Divide and conquer algorithms
+
+**Quicksort** :
+QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot. Quicksort is `O(n logn)` in the best and average case scenarios and `O(n^2)` in the worst case. But since it has the upper hand in the average cases for most inputs, Quicksort is generally considered the “fastest” sorting algorithm. Here , we are using Quick Sort Algorithm to sort the user **watched list** in lexicographical order .
+
+### Dynamic programming algorithms
+
+**Caching** :
+Dynamic programming (and memoization) works to optimize the naive recursive solution by caching the results to these subproblems. If there are no overlapping subproblems, there is no point caching these results, since we will never use them again.
+
+### Greedy algorithms :
+
+**Greedy** -
+Greedy is an algorithmic paradigm that builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. So the problems where choosing locally optimal also leads to global solution are best fit for Greedy. I have used this algorithm to recommend final set of movies to the user .
+
+### Branch and bound algorithms
+
+**Optimisation** -
+An important advantage of branch-and-bound algorithms is that we can control the quality of the solution to be expected, even if it is not yet found. The cost of an optimal solution is only up to smaller than the cost of the best computed one.
+
+### Randomized algorithms
+
+**Random Pivot Point** -
+A randomized algorithm uses a random number at least once during the computation to make a decision . Durinng the implementation of Quicksort Algorithm , Randomized Algorithm is using there a random number to choose a pivot .
+
 ## Functional Features
+
+### The functional features in this application are implemented by using different kind of algorithm .
 
 - _Log-In_ - This feature will help the user in logging in to a database of the application
 - _WatchList_ - This feature will give the list of all the movies that are watched by a particular user .
@@ -84,3 +117,7 @@ npm start
 - _Hosted_ -This application is hosted so it is accessible on the internet. For remote database I have used `MongoDB Atlas` , for Backend hosting I have used `Heroku` and I have deployed my server there . For frontend I have used `Firebase` .
 - _Flexible for every device_ - This app is available on both mobile and desktop . They are not native to a particular type of system.
 - _Sorting the user Watched list_ - Clicking on each movie title will lead you to information page of that movie .
+
+### Reason for using MongoDB as databse
+
+Here we have used `MongoDb` because the user class can have empty/single or multiple watched movies so we cannot fix size of it in `SQL DB`.
