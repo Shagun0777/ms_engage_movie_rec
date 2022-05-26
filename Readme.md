@@ -4,7 +4,7 @@
 </p>
 <p align="center">A web-based movie app (Demo only)</p>
 ![Screenshot](./images/Screenshot%20(763).png)
-
+<img src="./images/Screenshot%20(763).png">
 ## About
 
 The app will search for movies and render the results to the user. <br/>
