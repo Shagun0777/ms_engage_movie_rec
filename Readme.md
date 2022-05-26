@@ -3,7 +3,7 @@
 
 </p>
 <p align="center">A web-based movie app (Demo only)</p>
-![Screenshot](./assets/takenote-light.png)
+![Screenshot](./images/Screenshot%20(763).png)
 
 ## About
 
@@ -23,14 +23,18 @@ In this application we have created our own API that fetches the data from the d
 - _Adding new movie to user watched list URL_: `https://movie-rec-fe.web.app/login/New_user_id/Movie_name`
 - _Recommendation of a movie URL_: `https://movie-rec-fe.web.app/recommend/Movie_name `
 
+For local setup:
+Need to have python3 and Node.Js installed.
 Backend Command
 
 bash
 cd Backend
 
 bash
+pip install -r requirements.txt
 python -m uvicorn index:app --reload
 
+In new terminal/cmd
 Frontend Command
 
 bash
