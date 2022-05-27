@@ -20,7 +20,7 @@ This application is hosted so it is accessible on the internet. For remote datab
 
 ## How to use this application
 
-### _To use this application go to the link beloww and follow these steps_-
+### _To use this application go to the link below and follow these steps_-
 
 [https://movie-rec-fe.web.app](https://movie-rec-fe.web.app)
 
